@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+        <title>Superhero Sightings</title>
+    </head>
+    <body>
+        <!-- Main Body of Page -->
+        <div class="container">
+            <div class="row m-4">
+                <div class="col text-center border border-dark">
+                    <h1>Superhero Sightings</h1>
+                </div>
+            </div>
+            <div class="row m-4 border border-dark">
+                <!-----SuperPowers here is the page name------------------------------------------>
+                <div class="col text-center m-3">
+                    <a href="superPowers" class="btn btn-outline-primary btn-lg">SuperPowers</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="superCreatures" class="btn btn-outline-primary btn-lg">Super-Creatures</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="sightings" class="btn btn-outline-primary btn-lg">Sightings</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="locations" class="btn btn-outline-primary btn-lg">Locations</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="organisations" class="btn btn-outline-primary btn-lg">Organisations</a>
+                </div>
+            </div>
+            <!---------------------------------------------------------------------------------------------->
+            <div class="row m-4 border border-dark">
+                <div class="col-3 text-center m-3">
+                    <span class="h3">Edit Organisation</span>
+                </div>
+                <div class="col-7 text-center m-3">
+                    <form action="updateOrganisation" method="POST">
+                        <div class="form-group row">
+                            <label for="name" class="col-3 col-form-label">
+                                Name</label>
+                            <div class="col-9">
+                                <input type="text" name="name" id="name" 
+                                       class="form-control" th:value="${organisation.name}" maxlength="50" pattern="[A-Za-z0-9 ]{1,50}" 
+                                       placeholder="Maximum 50 charachters (A-Za-z0-9) and space)" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="description" class="col-3 col-form-label">
+                                Description</label>
+                            <div class="col-9">
+                                <input type="text" name="description" id="description" 
+                                       class="form-control"  th:value="${organisation.description}" maxlength="50" pattern="[A-Za-z0-9 ]{1,100}" 
+                                       placeholder="Maximum 50 charachters (A-Za-z0-9 and space)" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="phone" class="col-3 col-form-label">
+                                Phone Number</label>
+                            <div class="col-9">
+                                <input type="text" name="phone" 
+                                       id="phone" class="form-control" th:value="${organisation.phone}" maxlength="20" pattern="[0-9 ]{10,20}" 
+                                       placeholder="Minimum 10 digits (only digits)" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-3 col-form-label">
+                                Email Adress</label>
+                            <div class="col-9">
+                                <input type="email" name="email" 
+                                       id="email" class="form-control" maxlength="50" th:value="${organisation.email}"
+                                       placeholder="organisation@organisation.org" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="street" class="col-3 col-form-label">
+                                Street</label>
+                            <div class="col-9">
+                                <input type="text" name="street" 
+                                       id="street" class="form-control" th:value="${organisation.address.street}"  maxlength="100" pattern="[A-Za-z0-9 ]{1,100}"
+                                       placeholder="Maximum 100 charachters (A-Za-z0-9 and space) required/>" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="city" class="col-3 col-form-label">
+                                City</label>
+                            <div class="col-9">
+                                <input type="text" name="city" 
+                                       id="city" class="form-control" th:value="${organisation.address.city}"  maxlength="50" pattern="[A-Za-z0-9 ]{1,50}"
+                                       placeholder="Maximum 50 charachters (A-Za-z0-9 and space)" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="state" class="col-3 col-form-label">
+                                State</label >
+                            <div class="col-9">
+                                <input type="text" name="state" 
+                                       id="state" class="form-control" th:value="${organisation.address.state}"  maxlength="50" pattern="[A-Za-z0-9 ]{1,50}" 
+                                       placeholder="Maximum 50 charachters (A-Za-z0-9 and space)" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="country" class="col-3 col-form-label">
+                                Country</label>
+                            <div class="col-9">
+                                <input type="text" name="country" 
+                                       id="country" class="form-control" th:value="${organisation.address.country}"  maxlength="50" pattern="[A-Za-z0-9 ]{1,50}" 
+                                       placeholder="Maximum 50 charachters (A-Za-z0-9 and space)" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="postalCode" class="col-3 col-form-label">
+                                Postal Code</label>
+                            <div class="col-9">
+                                <input type="text" name="postalCode" 
+                                       id="postalCode" class="form-control" th:value="${organisation.address.postalCode}"  maxlength="6" pattern="[A-Za-z0-9]{6}" 
+                                       placeholder="Maximum 6 charachters (A-Za-z0-9)" required/>
+                            </div>
+                        </div>
+                        <input type="hidden" name="id" th:value="${organisation.id}" />
+                        <button type="submit" class="btn btn-primary">
+                            Update Organisation</button>
+                    </form>
+                </div>
+            </div>
+        </div>     
+
+        <!------------------------------------------------------------------------------------------------>
+
+    </div> 
+</div> 
+
+<!-- End main body -->
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>;

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+        <title>Superhero Sightings</title>
+    </head>
+    <body>
+        <!-- Main Body of Page -->
+        <div class="container">
+            <div class="row m-4">
+                <div class="col text-center border border-dark">
+                    <h1>Superhero Sightings</h1>
+                </div>
+            </div>
+            <div class="row m-4 border border-dark">
+                <!-----SuperPowers here is the page name------------------------------------------>
+                <div class="col text-center m-3">
+                    <a href="superPowers" class="btn btn-outline-primary btn-lg">SuperPowers</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="superCreatures" class="btn btn-outline-primary btn-lg">Super-Creatures</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="sightings" class="btn btn-outline-primary btn-lg">Sightings</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="locations" class="btn btn-outline-primary btn-lg">Locations</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="organisations" class="btn btn-outline-primary btn-lg">Organisations</a>
+                </div>
+            </div>
+            <!-- addSuperPower()-------------------------------------------------------------------------------------------->
+
+            <!-- -------------------------------------------------------------------------------------->
+            <div class="row m-4 border border-dark">
+
+                <div class="col text-center m-3">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th th:text="${superCreature.name} + '\'s List of Organisations'" colspan="12">Title</th>
+                            </tr>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-----SuperPowers here is the list returned by displaySuperPowers()------------------->
+
+                            <tr th:each="organisation : ${organisations}">
+                                <td th:text="${organisation.id}">ID</td>
+                                <td th:text="${organisation.name}">Organisation Name</td>
+                                <td th:text="${organisation.description}">Organisation Description</td>
+                                <td th:text="${organisation.phone}">Phone Number </td>
+                                <td th:text="${organisation.email}">Email Adress</td>
+                                <td th:text="${organisation.address.street} + ' '  +${organisation.address.city}
+                                    + ' ' +${organisation.address.state}+ ' ' +${organisation.address.country}
+                                   + ' - ' + ${organisation.address.postalCode}">Organisation Address</td>
+
+                                <!-----UpdateSuperPowers()and deleteSuperPowers()------------------->
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div> 
+    </div> 
+
+
+
+
+
+
+
+
+    <!-- End main body -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>;

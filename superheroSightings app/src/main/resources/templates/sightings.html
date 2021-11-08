@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+        <title>Superhero Sightings</title>
+    </head>
+    <body>
+        <!-- Main Body of Page -->
+        <div class="container">
+            <div class="row m-4">
+                <div class="col text-center border border-dark">
+                    <h1>Superhero Sightings</h1>
+                </div>
+            </div>
+            <div class="row m-4 border border-dark">
+                <!-----SuperPowers here is the page name------------------------------------------>
+                <div class="col text-center m-3">
+                    <a href="superPowers" class="btn btn-outline-primary btn-lg">SuperPowers</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="superCreatures" class="btn btn-outline-primary btn-lg">Super-Creatures</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="sightings" class="btn btn-outline-primary btn-lg">Sightings</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="locations" class="btn btn-outline-primary btn-lg">Locations</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="organisations" class="btn btn-outline-primary btn-lg">Organisations</a>
+                </div>
+            </div>
+            <!-- addSuperPower()-------------------------------------------------------------------------------------------->
+
+            <div class="row m-4 border border-dark">
+                <div class="col-3 text-center m-3">
+                    <span class="h3">Add Sighting</span>
+                </div>
+                <div class="col-7 text-center m-3">
+                    <form action="addSighting" method="POST">
+
+                        <div class="form-group row">
+                            <label for="superCreature" class="col-3 col-form-label" >
+                                Super-Creature</label>
+                            <div class="col-9">
+
+                                <select id="superCreature" name="superCreatureId" 
+                                        class="form-control" required>
+                                    <option value="">Select your option</option>
+                                    <option th:each="superCreature : ${superCreatures}" 
+                                            th:value="${superCreature.id}" 
+                                            th:text="${superCreature.name}">
+                                        Super-Creature Name</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="date" class="col-3 col-form-label">
+                                Date</label>
+                            <div class="col-9" >
+                                <input type="date" name="date" 
+                                       id="date" class="form-control"   maxlength="50" pattern="[A-Za-z0-9 ]{1,50}" 
+                                       placeholder="Maximum 50 charachters (A-Za-z0-9 and space)" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="description" class="col-3 col-form-label">
+                                Description</label>
+                            <div class="col-9">
+                                <input type="text" name="description" 
+                                       id="description" class="form-control" maxlength="50" pattern="[A-Za-z0-9 ]{1,50}" 
+                                       placeholder="Maximum 100 charachters (A-Za-z0-9 and space)" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="locationName" class="col-3 col-form-label">
+                                Location name</label>
+                            <div class="col-9">
+                                <input type="text" name="locationName" 
+                                       id="locationName" class="form-control" 
+                                       maxlength="50" pattern="[A-Za-z0-9 ]{1,50}" 
+                                       placeholder="Maximum 100 charachters (A-Za-z0-9 and space)" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="locationDescription" class="col-3 col-form-label">
+                                Location description</label>
+                            <div class="col-9">
+                                <input type="text" name="locationDescription" 
+                                       id="locationDescription" class="form-control" 
+                                       maxlength="100" pattern="[A-Za-z0-9 ]{1,100}" 
+                                       placeholder="Maximum 100 charachters (A-Za-z0-9 and space)" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="latitude" class="col-3 col-form-label">
+                                Latitude</label>
+                            <div class="col-9">
+                                <input type="number" name="latitude" 
+                                       id="latitude" class="form-control"  min="-90" max="90" step="0.00001" maxlength=7 
+                                       placeholder="00.00000"  required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="longitude" class="col-3 col-form-label">
+                                Longitude</label>
+                            <div class="col-9">
+                                <input type="number" name="longitude" 
+                                       id="longitude" class="form-control" min="-180" max="180" step="0.00001" maxlength=7 
+                                       placeholder="000.00000" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="street" class="col-3 col-form-label">
+                                Street</label>
+                            <div class="col-9">
+                                <input type="text" name="street" 
+                                       id="street" class="form-control"   maxlength="100" pattern="[A-Za-z0-9 ]{1,100}"
+                                       placeholder="Maximum 100 charachters (A-Za-z0-9 and space) required/>" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="city" class="col-3 col-form-label">
+                                City</label>
+                            <div class="col-9">
+                                <input type="text" name="city" 
+                                       id="city" class="form-control"  maxlength="50" pattern="[A-Za-z0-9 ]{1,50}"
+                                       placeholder="Maximum 50 charachters (A-Za-z0-9 and space)" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="state" class="col-3 col-form-label">
+                                State</label >
+                            <div class="col-9">
+                                <input type="text" name="state" 
+                                       id="state" class="form-control"  maxlength="50" pattern="[A-Za-z0-9 ]{1,50}" 
+                                       placeholder="Maximum 50 charachters (A-Za-z0-9 and space)" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="country" class="col-3 col-form-label">
+                                Country</label>
+                            <div class="col-9">
+                                <input type="text" name="country" 
+                                       id="country" class="form-control"  maxlength="50" pattern="[A-Za-z0-9 ]{1,50}" 
+                                       placeholder="Maximum 50 charachters (A-Za-z0-9 and space)" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="postalCode" class="col-3 col-form-label">
+                                Postal Code</label>
+                            <div class="col-9">
+                                <input type="text" name="postalCode" 
+                                       id="postalCode" class="form-control"  maxlength="6" pattern="[A-Za-z0-9]{6}" 
+                                       placeholder="Maximum 6 charachters (A-Za-z0-9)" required/>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Add Sighting</button>
+                    </form>
+                </div>
+            </div>
+            <!-- -------------------------------------------------------------------------------------->
+            <div class="row m-4 border border-dark">
+                <div class="col text-center m-3">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Description</th>
+                                <th>Date</th>
+                                <th>Super-Creature</th>
+                                <th>Location</th>
+                                <th>Address</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-----SuperPowers here is the list returned by displaySuperPowers()------------------->
+
+                            <tr th:each="sighting : ${sightings}">
+                                <td th:text="${sighting.id}">ID</td>
+                                <td th:text="${sighting.description}">Sighting Description</td>
+                                <td> <a th:text="${sighting.date}" href="#" th:href="@{/displaySightingsByDay(date=${sighting.date})}">Date</a></td>
+                                <td th:text="${sighting.superCreature.name}">Super-Creature Name</td>
+                                <td th:text="${sighting.location.name}">Location Name</td>
+                                <td th:text="${sighting.location.address.street} + ' '  +${sighting.location.address.city} + ' '
+                                    + ' ' +${sighting.location.address.state}+ ' ' +${sighting.location.address.country}
+                                    + ${sighting.location.address.postalCode}">Sighting Address</td>
+
+                                <!-----UpdateSuperPowers()and deleteSuperPowers()------------------->
+                                <td><a href="#" th:href="@{/updateSighting(id=${sighting.id})}">Edit</a></td> 
+                                <td><a href="#" th:href="@{/deleteSighting(id=${sighting.id})}">Delete</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div> 
+    </div> 
+
+
+
+
+
+
+
+
+    <!-- End main body -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>;
